@@ -493,6 +493,10 @@ namespace Assets.Scripts
 
         }
 
+        
+
+        public GameObject intersectionDrawer;
+
         /// <summary>
         /// Casts a reay from vertex1 to vertex2 and gets the point of intersection with the plan, calculates the new uv as well.
         /// </summary>
@@ -507,6 +511,12 @@ namespace Assets.Scripts
         {
             float distance = GetDistanceRelativeToPlane(vertex1, vertex2, out Vector3 pointOfIntersection);
             uv = InterpolateUvs(vertex1Uv, vertex2Uv, distance);
+
+            
+            intersectionDrawer = GameObject.Find("IntersectionDrawer");
+            intersectionDrawer.GetComponent<IntersectionDrawer>().DrawIntersection(pointOfIntersection, Quaternion.identity);
+
+
             return pointOfIntersection;
         }
 
