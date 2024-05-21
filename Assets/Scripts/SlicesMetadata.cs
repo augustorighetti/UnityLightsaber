@@ -392,16 +392,30 @@ namespace Assets.Scripts
 
             for (int i = 0; i < meshTriangles.Length; i += 3)
             {
+                Debug.Log($"count == {i}");
                 //We need the verts in order so that we know which way to wind our new mesh triangles.
                 Vector3 vert1 = meshVerts[meshTriangles[i]];
+                Debug.Log($"Vertex 1 {vert1}");
+
                 int vert1Index = Array.IndexOf(meshVerts, vert1);
-                Vector2 uv1 = meshUvs[vert1Index];
+                Debug.Log($"Vertex 1 index {vert1Index}");
+                
+                Debug.Log($"Mesh UV Length {_mesh.uv.Length}");
+
+                //Debug.Log($"Mesh UV {meshUvs}");
+
+                //Vector2 uv1 = meshUvs[vert1Index];
+                Vector2 uv1 = new Vector2();
+
                 Vector3 normal1 = meshNormals[vert1Index];
                 bool vert1Side = _plane.GetSide(vert1);
 
                 Vector3 vert2 = meshVerts[meshTriangles[i + 1]];
                 int vert2Index = Array.IndexOf(meshVerts, vert2);
-                Vector2 uv2 = meshUvs[vert2Index];
+                
+                //Vector2 uv2 = meshUvs[vert2Index];
+                Vector2 uv2 = new Vector2();
+
                 Vector3 normal2 = meshNormals[vert2Index];
                 bool vert2Side = _plane.GetSide(vert2);
 
@@ -409,7 +423,10 @@ namespace Assets.Scripts
                 bool vert3Side = _plane.GetSide(vert3);
                 int vert3Index = Array.IndexOf(meshVerts, vert3);
                 Vector3 normal3 = meshNormals[vert3Index];
-                Vector2 uv3 = meshUvs[vert3Index];
+
+                //Vector2 uv3 = meshUvs[vert3Index];
+
+                Vector2 uv3 = new Vector2();
 
                 //All verts are on the same side
                 if (vert1Side == vert2Side && vert2Side == vert3Side)
